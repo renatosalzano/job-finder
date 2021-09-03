@@ -13,25 +13,4 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.data.fetch_data(this.data.settings, this.data.page_index);
   }
-  date(value: string) {
-    let date = new Date(value);
-    let month = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
-    let date_parsed = `${date.getDate()} ${
-      month[date.getMonth() + 1]
-    } ${date.getFullYear()} `;
-    return date_parsed;
-  }
 }

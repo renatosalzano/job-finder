@@ -98,9 +98,13 @@ mat-progress-bar {
 
 @media screen and (max-width: 481px) {
   header {
+    grid-template-columns: 100px auto;
     grid-template-areas:
       "logo _input"
       "src_bar src_bar";
+    h1 {
+      font-size: 18px;
+    }
   }
   form {
     padding: 10px 16px;

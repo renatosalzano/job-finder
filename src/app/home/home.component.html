@@ -18,7 +18,9 @@
       </span>
       <span>{{ data.levels[0].name }} </span>
 
-      <span class="_date">{{ date(data.publication_date) }}</span>
+      <span class="_date">{{
+        data.publication_date | date: "dd MMM yyyy"
+      }}</span>
     </mat-card-content>
   </mat-card>
   <!-- end loop -->
