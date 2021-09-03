@@ -10,11 +10,8 @@ mat-card-title {
 mat-card-subtitle {
   font-size: 16px;
 }
-.mat-card-avatar {
-  width: auto;
-  height: 40px;
-  border-radius: 20px;
-  border: 1px solid #e7e7e7;
+mat-card-content {
+  margin-top: 16px;
 }
 
 @media screen and (max-width: 769px) {
