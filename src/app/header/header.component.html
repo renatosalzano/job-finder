@@ -1,0 +1,79 @@
+<header>
+  <a routerLink="/" style="text-decoration: none">
+    <h1>JobFinder</h1>
+  </a>
+  <div class="_input_container" (click)="this.data.toggle_src_bar()">
+    <mat-icon color="primary">place</mat-icon>
+    <span>{{ this.data.input_value }}</span>
+  </div>
+  <div *ngIf="this.data.show_src_bar" class="src_bar_container">
+    <form [formGroup]="options" (ngSubmit)="submit_evt($event)">
+      <div>
+        <!-- skill level -->
+        <mat-form-field appearance="legacy" class="level_form">
+          <mat-label>Level</mat-label>
+          <mat-select
+            [formControl]="levelControl"
+            multiple
+            [(ngModel)]="selected_level"
+          >
+            <mat-option *ngFor="let level of levels" [value]="level">{{
+              level
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- city -->
+        <mat-form-field appearance="legacy" class="city_form">
+          <mat-label>City</mat-label>
+          <input
+            type="text"
+            [formControl]="cityControl"
+            formControlName="city"
+            matInput
+            [matAutocomplete]="city_list"
+            (input)="input_handler($event)"
+          />
+          <mat-autocomplete #city_list="matAutocomplete">
+            <mat-option *ngIf="this.data.city_loading">
+              <mat-spinner diameter="38"></mat-spinner>
+            </mat-option>
+            <mat-option
+              *ngFor="let city of this.data.cities"
+              [value]="city.name"
+            >
+              {{ city.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <!-- country -->
+        <mat-form-field appearance="legacy" class="country_form">
+          <mat-label>Country</mat-label>
+          <input
+            type="text"
+            [formControl]="countryControl"
+            formControlName="country"
+            matInput
+            [matAutocomplete]="countries"
+          />
+          <mat-autocomplete
+            #countries="matAutocomplete"
+            (optionSelected)="this.data.update_country($event)"
+          >
+            <mat-option
+              *ngFor="let country of filteredCountries | async"
+              [value]="country.name"
+            >
+              {{ country.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <button mat-flat-button color="primary" type="submit">Search Job</button>
+    </form>
+  </div>
+</header>
+<div
+  class="src_trigger"
+  *ngIf="this.data.show_src_bar"
+  (click)="this.data.toggle_src_bar()"
+></div>

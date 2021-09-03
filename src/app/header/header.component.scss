@@ -1,0 +1,111 @@
+header {
+  position: fixed;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 150px minmax(auto, 668px) auto;
+  grid-template-rows: auto auto;
+  grid-template-areas: "logo _input ." ". src_bar .";
+  column-gap: 10px;
+  padding: 6px 0;
+  backdrop-filter: blur(25px);
+  background-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.205);
+  z-index: 20;
+  a {
+    grid-area: logo;
+    display: flex;
+    align-items: center;
+    margin-left: 12px;
+    h1 {
+      margin: 0;
+      color: #3f51b5;
+    }
+  }
+  ._input_container {
+    grid-area: _input;
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    gap: 6px;
+    border: 1px solid rgb(156, 184, 207);
+    border-radius: 4px;
+
+    span {
+      font-size: 16px;
+    }
+  }
+  .src_bar_container {
+    grid-area: src_bar;
+  }
+}
+
+form {
+  display: block;
+  flex-direction: column;
+  width: 100%;
+  padding: 8px 0;
+  div {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+}
+
+mat-form-field {
+  font-size: 16px;
+  width: 100%;
+}
+::ng-deep .mat-form-field-wrapper {
+  margin-bottom: -1.25em;
+}
+
+mat-progress-bar {
+  padding: 20px 2px;
+}
+
+.src_trigger {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 10;
+}
+
+@media screen and (max-width: 769px) {
+  header {
+    grid-template-areas:
+      "logo _input"
+      ". src_bar";
+    ._input_container {
+      margin: 0;
+      margin-right: 16px;
+    }
+  }
+  form {
+    width: 100% !important;
+    padding: 10px 16px 10px 0;
+    div {
+      flex-direction: column;
+      gap: 6px;
+    }
+  }
+}
+
+@media screen and (max-width: 481px) {
+  header {
+    grid-template-areas:
+      "logo _input"
+      "src_bar src_bar";
+  }
+  form {
+    padding: 10px 16px;
+  }
+
+  mat-form-field {
+    font-size: 14px;
+  }
+}

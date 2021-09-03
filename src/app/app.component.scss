@@ -1,0 +1,26 @@
+main {
+  padding-top: 60px;
+  width: 100%;
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: 150px minmax(auto, 668px) auto;
+  grid-template-areas: ". _section .";
+  column-gap: 10px;
+}
+
+section {
+  grid-area: _section;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+}
+
+@media screen and (max-width: 769px) {
+  main {
+    display: block;
+  }
+}

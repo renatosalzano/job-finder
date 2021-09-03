@@ -1,0 +1,24 @@
+.job_detail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 60px;
+}
+mat-card-title {
+  font-size: 18px;
+}
+mat-card-subtitle {
+  font-size: 16px;
+}
+.mat-card-avatar {
+  width: auto;
+  height: 40px;
+  border-radius: 20px;
+  border: 1px solid #e7e7e7;
+}
+
+@media screen and (max-width: 769px) {
+  mat-card {
+    border-radius: 0;
+  }
+}

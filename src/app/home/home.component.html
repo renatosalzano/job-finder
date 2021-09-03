@@ -1,0 +1,34 @@
+<section>
+  <div class="spinner_container" [ngClass]="this.data.is_loading ? 'show' : ''">
+    <mat-spinner diameter="40" style="margin: 20px auto"></mat-spinner>
+  </div>
+  <!-- start loop -->
+  <mat-card
+    *ngFor="let data of this.data.datalist; let i = index"
+    [class]="'card' + i"
+  >
+    <mat-card-title>
+      <a routerLink="/job/{{ data.id }}"> {{ data.name }} </a>
+    </mat-card-title>
+
+    <mat-card-content>
+      <span>
+        <strong>{{ data.company.name }}</strong>
+        {{ data.locations[0].name }}
+      </span>
+      <span>{{ data.levels[0].name }} </span>
+
+      <span class="_date">{{ date(data.publication_date) }}</span>
+    </mat-card-content>
+  </mat-card>
+  <!-- end loop -->
+</section>
+<div class="paginator" *ngIf="this.data.page_count !== 0">
+  <span>Page {{ this.data.page_index }} of {{ this.data.page_count }}</span>
+  <mat-icon color="primary" (click)="this.data.page_evt('prev')"
+    >arrow_back_ios</mat-icon
+  >
+  <mat-icon color="primary" (click)="this.data.page_evt('next')"
+    >arrow_forward_ios</mat-icon
+  >
+</div>

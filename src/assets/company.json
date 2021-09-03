@@ -1,0 +1,22 @@
+{
+  "description": "Our mission: To be Earth's most customer-centric company.",
+  "locations": [{ "name": "Seattle, WA" }],
+  "industries": [{ "name": "Tech" }],
+  "tags": [],
+  "short_name": "amazon",
+  "name": "Amazon",
+  "publication_date": "2020-09-10T17:13:33.975984Z",
+  "model_type": "companies",
+  "twitter": "",
+  "id": 12090,
+  "size": { "name": "Large Size", "short_name": "large" },
+  "refs": {
+    "landing_page": "https://www.themuse.com/companies/amazon",
+    "jobs_page": "https://www.themuse.com/search/jobs/c-amazon",
+    "mini_f1_image": "https://pilbox.themuse.com/image.jpg?url=https%3A%2F%2Fassets.themuse.com%2Fuploaded%2Fcompanies%2F12090%2Fabout_modules%2FNone%2Fprofile_image_1.jpg&h=135&prog=1&w=183",
+    "f2_image": "https://assets.themuse.com/uploaded/companies/12090/about_modules/None/profile_image_2.jpg",
+    "logo_image": "https://assets.themuse.com/uploaded/companies/12090/small_logo.png?v=10ea4eb650de2d1ade64d89d0317e18970e14ad334e29292d381b68572fd849b",
+    "f1_image": "https://assets.themuse.com/uploaded/companies/12090/about_modules/None/profile_image_1.jpg",
+    "f3_image": "https://assets.themuse.com/uploaded/companies/12090/about_modules/None/profile_image_3.jpg"
+  }
+}
