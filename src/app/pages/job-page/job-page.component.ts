@@ -14,6 +14,7 @@ export class JobPageComponent implements OnInit {
   constructor(private route: ActivatedRoute, public http: HttpClient) {}
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     let id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.fetch_data(id);
@@ -27,15 +28,6 @@ export class JobPageComponent implements OnInit {
       this.job = res;
       console.log(res);
       this.fetch_company_data(res.company.id);
-    });
-  }
-
-  fetch_data_off() {
-    /* const url = `https://www.themuse.com/api/public/companies/${id}`; */
-    const url = `../../assets/job.json`;
-    this.http.get(url).subscribe((res: any) => {
-      this.job = res;
-      console.log(res);
     });
   }
 

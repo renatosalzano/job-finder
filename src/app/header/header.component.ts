@@ -2,9 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { debounceTime, map, startWith } from 'rxjs/operators';
-import { DataService } from '../data.service';
+import { Observable, throwError } from 'rxjs';
+import {
+  catchError,
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  startWith,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
+import { AppService } from '../services/app.service';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +22,12 @@ import { DataService } from '../data.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  options: FormGroup;
+  srcForm: FormGroup;
   filteredCountries: Observable<any[]>;
+  filteredCities: Observable<any[]>;
   levelControl = new FormControl('');
   cityControl = new FormControl('');
-  countryControl = new FormControl(this.data.input_value);
+  countryControl = new FormControl(this.app.input_value);
   loading = false;
 
   levels: string[] = [
@@ -30,11 +41,12 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public http: HttpClient,
-    public data: DataService,
+    public app: AppService,
+    public api: ApiService,
     public _router: Router,
     fb: FormBuilder
   ) {
-    this.options = fb.group({
+    this.srcForm = fb.group({
       level: this.levelControl,
       city: this.cityControl,
       country: this.countryControl,
@@ -42,28 +54,44 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data.get_countries();
+    this.api.get_countries();
     this.filteredCountries = this.countryControl.valueChanges.pipe(
-      startWith(this.data.input_value),
-      map((value) => this.filter_countries(value))
+      debounceTime(200),
+      startWith(this.app.input_value),
+      map((value) => {
+        return this.filter_countries(value);
+      })
     );
+
+    this.filteredCities = this.cityControl.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((value) => {
+        return this.cities_autocomplete(value);
+      })
+    );
+
+    /* console.log(this.api.user_search_subject); */
   }
 
-  // AUTOCOMPLETE FUNCTION
+  // autocomplete functions
+
+  cities_autocomplete(value: string): Observable<any> {
+    return this.api.get_cities(value).pipe(
+      map((res: any) => {
+        if (value == '' || value.length < 3) return; // -> empty drop down
+        return res.geonames;
+      }),
+      catchError((err) => throwError(err))
+    );
+  }
 
   filter_countries(value: string): any[] {
     const filterValue = value.toLowerCase();
 
-    return this.data.countries.filter((country) =>
+    return this.api.countries.filter((country) =>
       country.name.toLowerCase().includes(filterValue)
     );
-  }
-
-  input_handler(evt: any) {
-    let value = evt.target.value;
-    if (value.length > 1) {
-      this.data.get_cities(value);
-    }
   }
 
   // SUBMIT
@@ -71,9 +99,10 @@ export class HeaderComponent implements OnInit {
   submit_evt(evt: any) {
     evt.preventDefault();
     let levels = this.selected_level;
-    let city = this.options.get('city')?.value;
-    let country = this.options.get('country')?.value;
-    let location = `&location=${city ? city + '%2C%20' : ''}${country}`;
+    let city = this.srcForm.value?.city;
+    let country = this.srcForm.value?.country;
+    let location = `${city ? city + '%2C%20' : ''}${country}`;
+
     let value = country;
     let level = '';
     if (levels.length > 0) {
@@ -82,10 +111,17 @@ export class HeaderComponent implements OnInit {
     if (city) {
       value = `${city}, ${country}`; //-> fake input
     }
+    if (location) {
+      location = '&location=' + location.replace(/ /g, '%20');
+    }
 
-    this.data.input_value = value;
-    this.data.update_settings(level + location);
-    this.data.show_src_bar = false;
-    this._router.navigate(['/']);
+    this.app.input_value = value;
+    this.api.update_user_search({
+      location: location,
+      level: level,
+      page_index: 1,
+    });
+    this.app.show_src_bar = false; // resize header
+    this._router.navigate(['/']); // if search back to home
   }
 }

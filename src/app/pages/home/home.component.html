@@ -1,0 +1,34 @@
+<section>
+  <div class="spinner_container" [ngClass]="this.api.is_loading ? 'show' : ''">
+    <mat-spinner diameter="40" style="margin: 20px auto"></mat-spinner>
+  </div>
+  <!-- start loop -->
+  <mat-card
+    *ngFor="let job of this.api.jobs_result$ | async; let i = index"
+    [class]="'card' + i"
+  >
+    <mat-card-title>
+      <a routerLink="/job/{{ job.id }}"> {{ job.name }} </a>
+    </mat-card-title>
+
+    <mat-card-content>
+      <span>
+        <strong>{{ job.company.name }}</strong>
+        {{ job.locations[0]?.name }}
+      </span>
+      <span>{{ job.levels[0]?.name }} </span>
+
+      <span class="_date">{{
+        job.publication_date | date: "dd MMM yyyy"
+      }}</span>
+    </mat-card-content>
+  </mat-card>
+  <!-- end loop -->
+</section>
+<div class="paginator" *ngIf="this.api.page_count !== 0">
+  <span>Page {{ index }} of {{ this.api.page_count }}</span>
+  <mat-icon color="primary" (click)="page_evt('prev')">arrow_back_ios</mat-icon>
+  <mat-icon color="primary" (click)="page_evt('next')"
+    >arrow_forward_ios</mat-icon
+  >
+</div>

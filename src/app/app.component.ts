@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DataService } from './data.service';
+import { AppService } from './services/app.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +9,5 @@ import { DataService } from './data.service';
 export class AppComponent {
   title = 'job-finder';
   show_src_bar: boolean = false;
-  constructor(public data: DataService) {}
+  constructor() {}
 }
