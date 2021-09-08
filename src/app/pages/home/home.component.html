@@ -2,6 +2,7 @@
   <div class="spinner_container" [ngClass]="this.api.is_loading ? 'show' : ''">
     <mat-spinner diameter="40" style="margin: 20px auto"></mat-spinner>
   </div>
+  <div class="no_res" *ngIf="this.api.no_result">Sorry, no result found</div>
   <!-- start loop -->
   <mat-card
     *ngFor="let job of this.api.jobs_result$ | async; let i = index"
@@ -25,7 +26,7 @@
   </mat-card>
   <!-- end loop -->
 </section>
-<div class="paginator" *ngIf="this.api.page_count !== 0">
+<div class="paginator" *ngIf="this.api.page_count > 1">
   <span>Page {{ index }} of {{ this.api.page_count }}</span>
   <mat-icon color="primary" (click)="page_evt('prev')">arrow_back_ios</mat-icon>
   <mat-icon color="primary" (click)="page_evt('next')"

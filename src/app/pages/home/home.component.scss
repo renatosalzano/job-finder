@@ -51,6 +51,13 @@ mat-card-content {
   }
 }
 
+.no_res {
+  width: 100%;
+  padding-top: 60px;
+  padding-left: 16px;
+  font-size: 20px;
+}
+
 @media screen and (max-width: 769px) {
   mat-card {
     border-radius: 0;

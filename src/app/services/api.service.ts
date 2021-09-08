@@ -11,6 +11,7 @@ import { Request } from '../models/job.model';
 export class ApiService {
   public show_src_bar: boolean = false;
   public is_loading: boolean = false;
+  public no_result: boolean = false;
   // themuse api var
   public location = '&location=italy';
   public levels = '';
@@ -39,6 +40,11 @@ export class ApiService {
         map((res: any) => {
           this.page_count = res.page_count;
           this.is_loading = false;
+          this.no_result = false;
+          if (res.results.length == 0) {
+            this.no_result = true;
+          }
+
           return res.results;
         })
       );
