@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { catchError, filter, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Request } from '../models/job.model';
+import { Job, Request } from '../models/job.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class ApiService {
   public location = '&location=italy';
   public levels = '';
   public page_count: number;
-  public jobs_result$: Observable<any>;
+  public jobs_result$: Observable<any[]>;
 
   // geonames api var
   public query = '';
@@ -59,7 +59,7 @@ export class ApiService {
   }
 
   get_jobs(obj: any) {
-    return this.http.get(
+    return this.http.get<Job>(
       `${environment.themuseAPI}jobs?${obj?.location}${obj?.level}&category=Software%20Engineer&page=${obj?.page_index}`
     );
   }
