@@ -1,27 +1,28 @@
-# JobFinder
+## JOB FINDER
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.1.
+---
 
-## Development server
+Author: **Renato Salzano**  
+Email: [renato.salzano92@gmail.com](mailto:renato.salzano92@gmail.com)  
+Link: [Blog MERN v1.0](https://job-finder-9bc80.web.app/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+---
+A Star2Impact Project.
+Simple job search app that uses themuse API to find information about works and company, developed with Angular.
 
-## Code scaffolding
+#### Feature
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- [x] Easy to use
+- [x] Compact Search Bar
+- [x] Minimal Design
+- [x] Full responsive
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+#### Usage
+1. `git clone [url]`
+2. `cd [repo-folder-name]`
+3. `npm install --save-dev angular-cli@latest`
+4. `npm install`
+6. `ng serve`
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
