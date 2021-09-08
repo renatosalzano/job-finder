@@ -4,7 +4,7 @@
 
 Author: **Renato Salzano**  
 Email: [renato.salzano92@gmail.com](mailto:renato.salzano92@gmail.com)  
-Link: [Blog MERN v1.0](https://job-finder-9bc80.web.app/)
+Link: [Job Finder App](https://job-finder-9bc80.web.app/)
 
 ---
 A Star2Impact Project.
