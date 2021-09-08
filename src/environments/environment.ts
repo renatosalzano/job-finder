@@ -7,7 +7,7 @@ export const environment = {
   themuseAPI: 'https://www.themuse.com/api/public/',
   geonamesAPI:
     'http://api.geonames.org/searchJSON?formatted=true&maxRows=10&lang=en&style=short&username=',
-  geonamesUSER: '',
+  geonamesUSER: '', // --> your geonames username for cities autocomplete
 };
 
 /*

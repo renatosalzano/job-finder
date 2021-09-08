@@ -14,7 +14,7 @@ export class JobPageComponent implements OnInit {
   constructor(private route: ActivatedRoute, public http: HttpClient) {}
 
   ngOnInit(): void {
-    window.scrollTo(0, 0);
+    window.scroll(0, 0);
     let id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.fetch_data(id);

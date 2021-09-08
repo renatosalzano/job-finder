@@ -25,12 +25,12 @@ export class HomeComponent implements OnInit {
     if (type == 'next') {
       if (this.index === this.end_index) return;
       this.index++;
-      window.scrollTo(0, 0); // reset scroll position
+      window.scroll(0, 0); // reset scroll position
     }
     if (type == 'prev') {
       if (this.index == 1) return;
       this.index--;
-      window.scrollTo(0, 0);
+      window.scroll(0, 0);
     }
     this.api.update_user_search({ page_index: this.index });
   }
