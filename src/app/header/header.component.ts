@@ -106,7 +106,7 @@ export class HeaderComponent implements OnInit {
     let value = country;
     let level = '';
     if (levels.length > 0) {
-      level = 'level=' + levels.join('&level=').replace(/ /g, '%20');
+      level = '&level=' + levels.join('&level=').replace(/ /g, '%20');
     }
     if (city) {
       value = `${city}, ${country}`; //-> fake input
