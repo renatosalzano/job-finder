@@ -1,4 +1,8 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { JobPageComponent } from './job-page.component';
 
@@ -8,9 +12,14 @@ describe('JobPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ JobPageComponent ]
-    })
-    .compileComponents();
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule,
+        MatIconModule,
+        MatCardModule,
+      ],
+      declarations: [JobPageComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
